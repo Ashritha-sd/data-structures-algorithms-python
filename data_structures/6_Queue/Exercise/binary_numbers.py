@@ -1,40 +1,50 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[10]:
+
+
 from collections import deque
 
 class Queue:
+    
     def __init__(self):
         self.buffer = deque()
-
+    
     def enqueue(self, val):
         self.buffer.appendleft(val)
-
+        
     def dequeue(self):
-        if len(self.buffer)==0:
-            print("Queue is empty")
-            return
-
         return self.buffer.pop()
-
+    
     def is_empty(self):
-        return len(self.buffer) == 0
-
+        return len(self.buffer)==0
+    
     def size(self):
         return len(self.buffer)
-
-    def front(self):
+    
+    def last(self):
+        if self.is_empty():
+            raise IndexError("Queue is empty")
         return self.buffer[-1]
 
-def produce_binary_numbers(n):
-    numbers_queue = Queue()
-    numbers_queue.enqueue("1")
 
-    for i in range(n):
-        front = numbers_queue.front()
-        print("   ", front)
-        numbers_queue.enqueue(front + "0")
-        numbers_queue.enqueue(front + "1")
-
-        numbers_queue.dequeue()
+# In[15]:
 
 
-if __name__ == '__main__':
-    produce_binary_numbers(10)
+binary_queue=Queue()
+i=0
+binary_queue.enqueue('1')
+while i<10:
+    f=binary_queue.last()
+    binary_queue.enqueue(f+'0')
+    binary_queue.enqueue(f+'1')
+    print(binary_queue.dequeue())
+    i+=1
+
+
+# In[ ]:
+
+
+
+

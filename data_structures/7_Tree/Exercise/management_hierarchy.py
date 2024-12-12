@@ -1,7 +1,13 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[11]:
+
+
 class TreeNode:
-    def __init__(self, name, designation):
-        self.name = name
-        self.designation = designation
+    def __init__(self, data1, data2):
+        self.name = data1
+        self.designation=data2
         self.children = []
         self.parent = None
 
@@ -14,20 +20,18 @@ class TreeNode:
 
         return level
 
-    def print_tree(self, property_name):
-        if property_name == 'both':
-            value = self.name + " (" + self.designation + ")"
-        elif property_name == 'name':
-            value = self.name
-        else:
-            value = self.designation
-
+    def print_tree(self, val):
         spaces = ' ' * self.get_level() * 3
         prefix = spaces + "|__" if self.parent else ""
-        print(prefix + value)
+        if val=="both":
+            print(prefix + self.name + '(' + self.designation + ')')
+        elif val=="name":
+            print(prefix + self.name)
+        elif val=="designation":
+            print(prefix + self.designation)
         if self.children:
             for child in self.children:
-                child.print_tree(property_name)
+                child.print_tree(val)
 
     def add_child(self, child):
         child.parent = self
@@ -61,3 +65,10 @@ if __name__ == '__main__':
     root_node.print_tree("name")
     root_node.print_tree("designation")
     root_node.print_tree("both")
+
+
+# In[ ]:
+
+
+
+

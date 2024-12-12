@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[18]:
+
+
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -13,15 +19,15 @@ class TreeNode:
 
         return level
 
-    def print_tree(self, level):
-        if self.get_level() > level:
-            return
-        spaces = ' ' * self.get_level() * 3
-        prefix = spaces + "|__" if self.parent else ""
-        print(prefix + self.data)
+    def print_tree(self, val):
+        self.level=self.get_level()
+        if self.level<=val:
+            spaces = ' ' * self.level * 3
+            prefix = spaces + "|__" if self.parent else ""
+            print(prefix + self.data)
         if self.children:
             for child in self.children:
-                child.print_tree(level)
+                child.print_tree(val)
 
     def add_child(self, child):
         child.parent = self
@@ -65,6 +71,13 @@ def build_location_tree():
 
 if __name__ == '__main__':
     root_node = build_location_tree()
+    root_node.print_tree(1)
+    root_node.print_tree(2)
     root_node.print_tree(3)
+
+
+# In[ ]:
+
+
 
 
